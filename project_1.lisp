@@ -25,6 +25,7 @@
 ;;; Recursive path-finding
 (defun find-path (start)
     "Recursively walks the tree of giraffe moves on a 7x7 board to get a path covering the whole board.
+    The board is 0-indexed with (0 0) representing the upper-left, and (6 6) representing the bottom right.
         Expects: 
             The argument start should be a list whose elements are of the form:
             (Y . X)
@@ -42,7 +43,7 @@
         ((not (listp start)) (return-from find-path nil))
         ;; parameter has enough moves to cover the board
         ((>= (length start) 49) (return-from find-path (reverse start)))
-        ;; need to generate more moves from current position
+        ;; generate more moves from current position
         (T (let ((pos-moves (gen-moves (nth 0 (nth 0 start)) (nth 1 (nth 0 start)))))
                 (loop 
                     for move in pos-moves
