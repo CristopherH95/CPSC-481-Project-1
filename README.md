@@ -1,15 +1,37 @@
-# CPSC-481-Project-1
-"Giraffe Cover" lisp project for CPSC-481 Artificial Intelligence
+Project 1 Giraffe Cover
 
-A "Giraffe" is a special chess piece which can:
-  - Move like a knight
-  - Move like a rook (with the limitation that 'rook' style moves are 1 space at a time max).
+Written by: Cristopher Hernandez
 
-The goal is to perform a "Giraffe Cover" of a 7x7 (0-indexed) board.
+Contact: cristopherh@csu.fullerton.edu
 
-In other words, the goal is to find a path, starting from (0, 0) which covers all spaces of the board.
-No repeats are allowed in moves.
+Class: CPSC-481-03
 
-This solution uses a recursive tree-walk to find a path from the starting point.
+Introduction:
+  This project is to write a Lisp program to find a sequence of moves for a chess giraffe that “covers” (visits all the squares) minimally on a 7x7 chess board. A square can be visited only once in a minimal “cover”.
+  A "giraffe" is a special chess piece which can:
+    - Move like a knight
+    - Move like a rook (with the limitation that 'rook' style moves are 1 space at a time max).
+  The goal is to print out a sequence of coordinates (as a list) which the giraffe could use to perform the minimal cover.
 
-#### implementation tested in Common Lisp 2.49
+External Requirements: 
+  None
+
+Build:
+  Executable from the command line without compilation.
+
+Installation:
+  Only the project_1.lisp file is required.
+
+Setup:
+  This solution was written and tested with GNU Common Lisp for Windows.
+  CLISP for windows can be found here: https://sourceforge.net/projects/clisp/files/
+
+Usage:
+  run on command line:
+  clisp project_1.lisp
+
+Extra Features:
+  None
+
+Bugs:
+  No known bugs at this time.
