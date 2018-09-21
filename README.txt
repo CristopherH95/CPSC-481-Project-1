@@ -23,7 +23,12 @@ External Requirements:
   None
 
 Build:
-  Executable from the command line without compilation.
+  Executable from the command line without compilation. 
+  However, a compiled version can be created using:
+
+  (COMPILE-FILE "project_1.lisp")
+
+  In a Common Lisp REPL
 
 Installation:
   Only the project_1.lisp file is required.
@@ -34,7 +39,12 @@ Setup:
 
 Usage:
   run on command line:
+
   clisp project_1.lisp
+
+  load compiled .fas in REPL:
+
+  (LOAD "project_1.fas")
 
 Extra Features:
   None
