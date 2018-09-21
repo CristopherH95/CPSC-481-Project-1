@@ -18,7 +18,7 @@
 (defun find-path (start)
     (cond 
         ((not (listp start)) (return-from find-path nil))
-        ((>= (length start) 49) (return-from find-path start))
+        ((>= (length start) 49) (return-from find-path (reverse start)))
         (T (let ((pos-moves (gen-moves (nth 0 (nth 0 start)) (nth 1 (nth 0 start)))))
                 (loop 
                     for move in pos-moves
