@@ -1,22 +1,32 @@
 ;;;; project_1.lisp
-;;;; Produces a list of moves to make to completely cover a 7x7 chess board.
-;;;; Uses the special "Giraffe" piece which can move like a knight or a rook that's limited to one square
+;;;; Written by: Cristopher Hernandez
+;;;; Contact: cristopherh@csu.fullerton.edu
+;;;; Defines a helper function, gen-moves, for getting possible (though not necessarily legal) giraffe moves from arbitrary coordinates.
+;;;; Defines find-path: the main recursive function for determining a path to cover the 7x7 board, given an initial path.
 
 ;;; Helper function
 (defun gen-moves (row col)
-    "Generates all 12 giraffe moves from the given row and column position"
+    "Produces a list of all 12 giraffe moves from the given row and column coordinates.
+     Note: this function does not perform any legality checks for the moves.
+        Expects:
+            row is an arbitrary integer
+            col is an arbitrary integer
+        Returns:
+            A list of the form:
+            ((Y X) (Y X) ...)
+            Where each element is a coordinate pair representing a possible giraffe move."
     (list
         ;; 'rook style' moves 
         (list (+ row 1) col)
         (list row (+ col 1))
         (list (- row 1) col)
         (list row (- col 1))
-        ;; positive y 'knight style' moves
+        ;; 'knight style' moves down board
         (list (+ row 2) (+ col 1))
         (list (+ row 2) (- col 1))
         (list (+ row 1) (+ col 2))
         (list (+ row 1) (- col 2))
-        ;; negative y 'knight style' moves
+        ;; 'knight style' moves up board
         (list (- row 2) (+ col 1))
         (list (- row 2) (- col 1))
         (list (- row 1) (+ col 2))
@@ -28,12 +38,12 @@
     The board is 0-indexed with (0 0) representing the upper-left, and (6 6) representing the bottom right.
         Expects: 
             The argument curr-path should be a list whose elements are of the form:
-            (Y . X)
+            (Y X)
             This argument represents the current path followed on the board.
             The first element is assumed to be the current position.
         Returns: 
             A list of the form:
-            ((Y . X) (Y . X) ...)
+            ((Y X) (Y X) ...)
             OR: 
             Nil
             A list represents moves to make to cover the board.
@@ -59,5 +69,5 @@
     )
 )
 
-;;; Test
+;;; run find path from start position of (0 0)
 (print (find-path (list (list 0 0))))

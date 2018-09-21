@@ -1,6 +1,7 @@
 Project 1 Giraffe Cover
 
-Written by: 
+Written by:
+    Team NULLPTR
     Cristopher Hernandez
 
 Contact: 
@@ -31,11 +32,12 @@ Build:
   In a Common Lisp REPL
 
 Installation:
-  Only the project_1.lisp file is required.
+  files list:
+    project_1.lisp
 
 Setup:
   This solution was written and tested with GNU Common Lisp for Windows.
-  CLISP for windows can be found here: https://sourceforge.net/projects/clisp/files/
+  CLISP for windows can be downloaded and installed here: https://sourceforge.net/projects/clisp/files/
 
 Usage:
   run on command line:
