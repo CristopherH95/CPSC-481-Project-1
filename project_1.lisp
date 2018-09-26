@@ -48,6 +48,7 @@
             Nil
             A list represents moves to make to cover the board.
             Nil represents no more valid moves found."
+    ;(print curr-path)
     (cond
         ;; parameter is not a list, return nil
         ((not (listp curr-path)) (return-from find-path nil))
@@ -62,10 +63,15 @@
                        (not (or (member move curr-path :test 'equal) (member move new-path :test 'equal))) ; No repeat moves 
                        (not (or (< (nth 0 move) 0) (< (nth 1 move) 0) ; No moves off board 
                             (> (nth 0 move) 6) (> (nth 1 move) 6))))
-                                  (if new-path 
-                                    (setf new-path (find-path (cons move new-path)))
-                                  (setf new-path (find-path (cons move curr-path))))     
+                                  (setf new-path (find-path (cons move curr-path)))     
                         nil)
+                    do (if new-path
+                            (print new-path))
+                    do (if new-path
+                            (if (and (>= (length new-path) 49) 
+                                 (not (member (list 0 0) (gen-moves (nth 0 (nth 0 new-path)) (nth 1 (nth 0 new-path))) :test 'equal)))
+                                    (setf new-path nil)
+                            (return-from find-path new-path)))
                     finally 
                         (return-from find-path new-path)
                 )
