@@ -48,32 +48,23 @@
             Nil
             A list represents moves to make to cover the board.
             Nil represents no more valid moves found."
-    ;(print curr-path)
     (cond
         ;; parameter is not a list, return nil
-        ((not (listp curr-path)) (return-from find-path nil))
+        ((not (listp curr-path)) nil)
         ;; parameter has enough moves to cover the board
-        ((>= (length curr-path) 49) (return-from find-path curr-path))
+        ((>= (length curr-path) 49) (reverse curr-path))
         ;; generate more moves from current position
-        (T (let ((pos-moves (gen-moves (nth 0 (nth 0 curr-path)) (nth 1 (nth 0 curr-path))))
-                (new-path nil))
+        (T (let ((pos-moves (gen-moves (nth 0 (nth 0 curr-path)) (nth 1 (nth 0 curr-path)))))
                 (loop 
                     for move in pos-moves
                     do (if (and 
-                       (not (or (member move curr-path :test 'equal) (member move new-path :test 'equal))) ; No repeat moves 
+                       (not (member move curr-path :test 'equal))     ; No repeat moves 
                        (not (or (< (nth 0 move) 0) (< (nth 1 move) 0) ; No moves off board 
                             (> (nth 0 move) 6) (> (nth 1 move) 6))))
-                                  (setf new-path (find-path (cons move curr-path)))     
+                                  (setq curr-path (find-path (cons move curr-path)))     
                         nil)
-                    do (if new-path
-                            (print new-path))
-                    do (if new-path
-                            (if (and (>= (length new-path) 49) 
-                                 (not (member (list 0 0) (gen-moves (nth 0 (nth 0 new-path)) (nth 1 (nth 0 new-path))) :test 'equal)))
-                                    (setf new-path nil)
-                            (return-from find-path new-path)))
                     finally 
-                        (return-from find-path new-path)
+                        (return-from find-path (reverse curr-path))
                 )
             )
         )
