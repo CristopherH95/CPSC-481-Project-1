@@ -50,19 +50,21 @@
             Nil represents no more valid moves found."
     (cond
         ;; parameter is not a list, return nil
-        ((not (listp curr-path)) (return-from find-path nil))
+        ((not (listp curr-path)) nil)
         ;; parameter has enough moves to cover the board
-        ((>= (length curr-path) 49) (return-from find-path (reverse curr-path)))
+        ((>= (length curr-path) 49) (reverse curr-path))
         ;; generate more moves from current position
         (T (let ((pos-moves (gen-moves (nth 0 (nth 0 curr-path)) (nth 1 (nth 0 curr-path)))))
                 (loop 
                     for move in pos-moves
                     do (if (and 
-                       (not (member move curr-path :test 'equal)) ; No repeat moves 
+                       (not (member move curr-path :test 'equal))     ; No repeat moves 
                        (not (or (< (nth 0 move) 0) (< (nth 1 move) 0) ; No moves off board 
-                            (> (nth 0 move) 6) (> (nth 1 move) 6)))) 
-                                (return-from find-path (find-path (cons move curr-path)))
+                            (> (nth 0 move) 6) (> (nth 1 move) 6))))
+                                  (setq curr-path (find-path (cons move curr-path)))     
                         nil)
+                    finally 
+                        (return-from find-path (reverse curr-path))
                 )
             )
         )

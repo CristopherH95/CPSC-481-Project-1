@@ -1,7 +1,7 @@
-Project 1 Giraffe Cover
+﻿Project 1 Giraffe Cover
 
 Written by:
-    Team NULLPTR
+    Team NLP
     Cristopher Hernandez
 
 Contact: 
@@ -21,7 +21,7 @@ Introduction:
   The goal is to print out a sequence of coordinates (as a list) which the giraffe could use to perform the minimal cover.
 
 External Requirements: 
-  None
+  None, aside from Lisp
 
 Build:
   Executable from the command line without compilation. 
